@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact form usando js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <form onsubmit="sendEmail(); reset(); return false;">
+                <h3>Contattaci</h3>
+                <input type="text" id="name" placeholder="Nome e cognome" required>
+                <input type="text" id="email" placeholder="Email" required>
+                <input type="text" id="phone" placeholder="Numero di telefono" required>
+                <textarea id="message" rows="4" placeholder="Come possiamo aiutarti?"></textarea>
+                <button type="submit">INVIA</button>
+            </form>
+        </div>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+            function sendEmail(){
+                Email.send({
+                    SecureToken: "86b5f49f-682a-4f39-823c-3e44b0c6e6c2",
+    
+    To : 'assistenza@techmade.eu',
+    From : document.getElementById("email").value,
+    Subject : "Nuovo contact form",
+    Body : "Name: " + document.getElementById("name").value
+            + "<br> Email: " + document.getElementById("email").value
+            + "<br> Numero di telefono: " + document.getElementById("phone").value
+            + "<br> Message: " + document.getElementById("message").value
+}).then(
+  message => alert("messagio inviato con successo")
+);  
+            }
+        </script>
+    </body>
+</html>
